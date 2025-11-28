@@ -16,18 +16,19 @@ Gem::Specification.new do |spec|
   spec.metadata['source_code_uri']   = spec.homepage
   spec.metadata['bug_tracker_uri']   = 'https://github.com/Nereare/iamspe/issues'
   spec.metadata['changelog_uri']     = 'https://github.com/Nereare/iamspe/blob/master/CHANGELOG.md'
-  # TODO: spec.metadata['documentation_uri'] = ''
+  spec.metadata['documentation_uri'] = 'https://nereare.github.io/iamspe/'
 
   spec.files = Dir[
     'lib/**/*.rb',
     'sig/*',
     'spec/*.rb',
     '.ruby-version',
+    'CHANGELOG.md',
     'LICENSE.md',
     'Rakefile'
   ]
   spec.bindir        = 'bin'
-  # TODO: spec.executables   = 'repo_templater'
+  spec.executables   = 'chefia'
   spec.require_paths = %w[lib]
 
   spec.add_dependency 'activesupport', '~> 8.1', '>= 8.1.1'
