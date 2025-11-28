@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lib/iamspe/meta"
+require_relative 'lib/iamspe/meta'
 
 Gem::Specification.new do |spec|
   spec.name        = Iamspe::SLUG
