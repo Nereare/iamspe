@@ -1,0 +1,11 @@
+AllCops:
+  TargetRubyVersion: 3.2
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+
+Metrics/BlockLength:
+  Max: 50
+  Exclude:
+    - 'spec/**/*.rb'
