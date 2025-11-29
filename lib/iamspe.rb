@@ -14,6 +14,15 @@ module Iamspe
     include TTY::Exit
     include TTY::Option
 
+    argument :command do
+      name    'command(string)'
+      arity   1
+      default :bossy
+      permit  %i[bossy front]
+      convert ->(val) { val.to_s == 'chefia' ? :bossy : :front }
+      desc    'O tipo de funções a serem executadas'
+    end
+
     # Define command line version flag
     flag :version do
       short '-v'
