@@ -12,6 +12,16 @@ module Iamspe
       def initialize
         # Inicializar TTY::Prompt
         @prompt = TTY::Prompt.new
+        # Inicializar TTY::Config
+        @config = TTY::Config.new
+        @config.filename = '.iamspe'
+        @config.append_path Dir.home
+        raise new Error, 'Arquivo de configuração não encontrado' unless @config.exist?
+
+        @config.read
+
+        # Obter chefe de plantão
+        @chief = @config.fetch(:nome)
         # Coletar pacientes e interpretar dados
         interpret_patients
         # Compilar texto de "output"
@@ -62,7 +72,7 @@ module Iamspe
       # Pré-compilar texto de "output"
       def start_out
         out = "\x2a⏳ \x60ATUALIZAÇÃO - CHEFIA DE PLANTÃO\x60 🛏\x2a\n"
-        out += "\x2aPlantão:\x2a TODAY - Igor Padoim\n"
+        out += "\x2aPlantão:\x2a TODAY - #{@chief}\n"
         out += "\x2aSituação atual:\x2a\nLIST"
         out.gsub('TODAY', parse_time)
       end
