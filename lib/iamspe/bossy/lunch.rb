@@ -8,15 +8,15 @@ module Iamspe
     class Lunch
       # Texto base do anúncio de almoços
       BASE_TXT = [
-          '\x2a🍝 \x60Almoços\x60 🍨\x2a',
+          "\x2a🍝 \x60Almoços\x60 🍨\x2a",
           '',
-          '\x2a🩺 Porta\x2a',
+          "\x2a🩺 Porta\x2a",
           '{{ DOOR }}',
-          '\x2a👀 Observação Térreo\x2a',
+          "\x2a👀 Observação Térreo\x2a",
           '{{ OBS }}',
           '',
-          '\x2aPlantonistas 12h:\x2a \x601h\x60 de almoço',
-          '\x2aPlantonistas 6h:\x2a \x6015min\x60 de pausa',
+          "\x2aPlantonistas 12h:\x2a \x601h\x60 de almoço",
+          "\x2aPlantonistas 6h:\x2a \x6015min\x60 de pausa"
       ].join("\n").freeze
 
       # Inicializador
