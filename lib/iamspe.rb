@@ -14,70 +14,68 @@ module Iamspe
     include TTY::Exit
     include TTY::Option
 
-    argument :command do
-      name    'command(string)'
+    # Argumento de comando (chefia ou porta)
+    argument :comando do
+      name    'comando (chefia ou porta)'
       arity   1
-      default :bossy
-      permit  %i[bossy front]
-      convert ->(val) { val.to_s == 'chefia' ? :bossy : :front }
-      desc    'O tipo de funções a serem executadas'
+      default 'chefia'
+      permit  %w[chefia porta]
+      desc    'Qual o setor cujas funções devem ser iniciadas'
     end
 
-    # Define command line version flag
-    flag :version do
+    # Definir bandeira de versão
+    flag :versao do
       short '-v'
-      long '--version'
-      desc 'Show the version of the current installation'
+      long '--versao'
+      desc 'Mostrar qual a versão atual (segundo SemVer)'
     end
 
-    # Define command line license flag
-    flag :license do
+    # Definir bandeira de licença
+    flag :licenca do
       short '-l'
-      long '--license'
-      desc 'Show license information'
+      long '--licenca'
+      desc 'Mostrar qual o nome da licença de uso'
     end
 
-    # Define command line help flag
-    flag :help do
+    # Definir bandeira de ajuda
+    flag :ajuda do
       short '-h'
-      long '--help'
-      desc 'Print help text'
+      long '--ajuda'
+      desc 'Mostrar esta tela de ajuda'
     end
 
-    # Set help text headers and footer
+    # Definir texto personalizado de ajuda
     usage do
       pastel = Pastel.new
-      program pastel.blue(RepoTemplater::SLUG).to_s
-      no_command
-      header pastel.cyan(RepoTemplater::NAME).to_s
-      header RepoTemplater::DESCRIPTION.to_s
-      footer "Available under the #{pastel.green(RepoTemplater::LICENSE)} by #{pastel.blue(RepoTemplater::AUTHOR)}."
+      program pastel.blue(Iamspe::SLUG).to_s
+      no_comando
+      header pastel.cyan(Iamspe::NAME).to_s
+      header Iamspe::DESCRIPTION.to_s
+      footer "Disponível sob a licença #{pastel.green(Iamspe::LICENSE)}, feito com ranço por #{pastel.blue(Iamspe::AUTHOR)}."
     end
 
-    # Compile TTY::Option parameters into a single value
+    # Compilar parâmetros de TTY::Option em um único termo
     def compiled_params
-      p = false
-      p = 'info' if params[:info]
-      p = 'version' if params[:version]
-      p = 'license' if params[:license]
-      p = 'help' if params[:help]
+      p = params[:comando]
+      p = 'versao' if params[:versao]
+      p = 'licenca' if params[:licenca]
+      p = 'ajuda' if params[:ajuda]
       p
     end
 
-    # Compile actions based on compiled parameters
+    # Compilar ações conforme os parâmetros compilados
     def run_actions
       case compiled_params
-      when 'info' then RepoTemplater::Actions.info
-      when 'version' then puts RepoTemplater::VERSION
-      when 'license' then puts RepoTemplater::LICENSE
-      when 'help' then puts help
+      when 'versao' then puts Iamspe::VERSION
+      when 'licenca' then puts Iamspe::LICENSE
+      when 'ajuda' then puts help
+      when 'chefia' then Iamspe::Bossy.new
       else
-        act = RepoTemplater::Actions.new
-        act.run
+        Iamspe::Door.new
       end
     end
 
-    # Run the command line interface
+    # Executar o aplicativo conforme os parâmetros fornecidos
     def run
       if params.errors.any?
         exit_with(:usage_error, params.errors.summary)
