@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'pastel'
 require 'tty-prompt'
 
 require_relative 'bossy/chairs'
@@ -16,6 +17,8 @@ module Iamspe
       def initialize
         # Inicializar TTY::Prompt
         @prompt = TTY::Prompt.new
+        # Inicializar Pastel
+        @pastel = Pastel.new
         # Decidir qual módulo acionar e acioná-lo
         @out = case decide_method
                when :chairs then Iamspe::Bossy::Chairs.new
@@ -25,9 +28,15 @@ module Iamspe
                when :lunch then Iamspe::Bossy::Lunch.new
                else # Início de Plantão
                  full = []
+                 puts @pastel.cyan.strong('# Repouso no leito #')
                  full << Iamspe::Bossy::Chairs.new
+                 puts ''
+                 puts @pastel.cyan.strong('# UTIs / CATEs #')
                  full << Iamspe::Bossy::IcuCath.new
+                 puts ''
+                 puts @pastel.cyan.strong('# Almoços #')
                  full << Iamspe::Bossy::Lunch.new
+                 puts ''
                  full.join("\n---\n")
                end
         # Exibir o resultado
