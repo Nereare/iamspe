@@ -32,7 +32,8 @@ module Iamspe
         # Busca ativa
         back << active_search
         # Compilar tudo
-        back.compact.join(', ')
+        back.reject!(&:empty?)
+        back.join(', ')
       end
 
       # Questionar se a evasão é retroativa
