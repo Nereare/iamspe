@@ -5,6 +5,9 @@ AllCops:
     - 'bin/**/*'
     - 'db/schema.rb'
     - 'vendor/**/*'
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
 
 Gemspec/DevelopmentDependencies:
   Enabled: false
