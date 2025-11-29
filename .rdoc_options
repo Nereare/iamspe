@@ -14,8 +14,8 @@ exclude:
 - Gemfile.lock
 - LICENSE.md
 - Rakefile
-- "*.sql"
-- "*.rbs"
+- schema.sql
+- iamspe.rbs
 line_numbers: true
 main_page: README.md
 markup: rdoc
