@@ -18,11 +18,11 @@ module Iamspe
         @prompt = TTY::Prompt.new
         # Decidir qual módulo acionar e acioná-lo
         @out = case decide_method
-               when 'chairs' then Iamspe::Bossy::Chairs.new
-               when 'bai' then Iamspe::Common::Bai.new
-               when 'gone' then Iamspe::Common::Gone.new
-               when 'icu-cath' then Iamspe::Bossy::IcuCath.new
-               when 'lunch' then Iamspe::Bossy::Lunch.new
+               when :chairs then Iamspe::Bossy::Chairs.new
+               when :bai then Iamspe::Common::Bai.new
+               when :gone then Iamspe::Common::Gone.new
+               when :icu_cath then Iamspe::Bossy::IcuCath.new
+               when :lunch then Iamspe::Bossy::Lunch.new
                else # Início de Plantão
                  full = []
                  full << Iamspe::Bossy::Chairs.new
