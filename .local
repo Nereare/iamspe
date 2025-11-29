@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
+
+# Clear the terminal
 clear
+# Remove old gem, then build and install new version
 gem uninstall iamspe
+echo
 gem build iamspe.gemspec
+echo
 gem install iamspe-*.gem
+echo
+# Remove installed gem file
+rm -vf iamspe-*.gem
+echo
+# Pause to let user see results
+read -n 1 -s -r -p "Press any key to continue..."
+
+# Run chefia to verify installation
+clear
+chefia
