@@ -4,9 +4,9 @@
 require 'bundler/setup'
 require 'iamspe'
 
-# Moficar ARGV para substituir 'porta' por 'chefia'
-ARGV.delete 'porta'
-ARGV.push('chefia') unless ARGV.include?('chefia')
+# Moficar ARGV para substituir 'chefia' por 'porta'
+ARGV.delete 'chefia'
+ARGV.push('porta') unless ARGV.include?('porta')
 
 # Iniciar o comando apropriado
 cmd = Iamspe::Starter.new
