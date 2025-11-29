@@ -13,7 +13,7 @@ module Iamspe
       # Inicializar TTY::Config
       @config = TTY::Config.new
       @config.filename = '.iamspe'
-      @config.append_path DIR.home
+      @config.append_path Dir.home
       # Checar completude da configuração
       check_fullness
       # Compilar configuração
