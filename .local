@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+clear
+gem uninstall iamspe
+gem build iamspe.gemspec
+gem install iamspe-*.gem
