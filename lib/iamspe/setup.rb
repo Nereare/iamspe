@@ -61,6 +61,7 @@ module Iamspe
       check_register_state
       intensive_sectors
     end
+
     # Submétodo de checagem de setores críticos
     def intensive_sectors
       check_eme_beds
@@ -78,6 +79,7 @@ module Iamspe
       end
       @config.set(:nome, value: name)
     end
+
     # Checar número de registro profissional
     def check_register_number
       return unless @config.fetch(:crm, :numero, default: nil).nil?
@@ -89,6 +91,7 @@ module Iamspe
       crm = ActiveSupport::NumberHelper.number_to_delimited(crm, delimiter: '.')
       @config.set(:crm, :numero, value: crm)
     end
+
     # Checar UF de registro profissional
     def check_register_state
       return unless @config.fetch(:crm, :uf, default: nil).nil?
@@ -110,6 +113,7 @@ module Iamspe
       end
       @config.set(:eme, :leitos, value: eme)
     end
+
     # Checar número de leitos na EME em CONTINGÊNCIA
     def check_eme_beds_ext
       return unless @config.fetch(:eme, :contingencia, default: nil).nil?
@@ -120,6 +124,7 @@ module Iamspe
       end
       @config.set(:eme, :contingencia, value: eme)
     end
+
     # Checar número de leitos na DT
     def check_dt_beds
       return unless @config.fetch(:dt, :leitos, default: nil).nil?
