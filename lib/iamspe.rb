@@ -5,6 +5,8 @@ require 'tty-exit'
 require 'tty-option'
 
 require_relative 'iamspe/bossy'
+require_relative 'iamspe/common'
+require_relative 'iamspe/door'
 require_relative 'iamspe/meta'
 require_relative 'iamspe/setup'
 
