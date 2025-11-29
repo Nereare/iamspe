@@ -82,7 +82,7 @@ module Iamspe
         end
         "não é localizado na unidade" unless foo
 
-        "e para o qual solicito auxílio da equipe de Apoio Médico para Busca Ativa de paciente nas dependências do PS, não é encontrado na unidade"
+        "para o qual solicito auxílio da equipe de Apoio Médico para Busca Ativa de paciente nas dependências do PS, não é encontrado na unidade"
       end
 
       # Obter tempo em formato configurado para região
