@@ -1,0 +1,49 @@
+name: Testar Gema
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      environment:
+        description: 'Environment'
+        type: environment
+        required: true
+  push:
+    branches: [ "master" ]
+  pull_request:
+    types: closed
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: Tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby 3.2
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+
+    - name: Set Up Environment
+      run: |
+        gem install bundler
+        bundle config path vendor/bundle
+        bundle install
+
+    - name: Run Tests
+      run: bundle exec rspec
