@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_support'
 require 'tty-prompt'
 require 'tzinfo'
 
@@ -38,23 +39,23 @@ module Iamspe
 
       # Obter filho da égua que abandonou prontuário aberto
       def fucker
-        name = @prompt.ask('Nome:') do |q|
+        name = @prompt.ask('Nome de quem abandonou prontuário:') do |q|
           q.required true
           q.modify   :up, :trim
         end
-        crm = @prompt.ask('CRM:') do |q|
+        crm = @prompt.ask('CRM da pessoa:') do |q|
           q.required true
           q.convert  :int
         end
-        crm = crm.to_s.reverse.gsub(/...(?=.)/, '\&,').reverse
+        crm = ActiveSupport::NumberHelper.number_to_delimited(crm, delimiter: '.')
         [name, crm]
       end
 
       # Perguntar se você quer enfatizar não ter escrito o lixo de redação do prontuário abandonado
       def shit?
         @prompt.yes?('O prontuário está mal-escrito e você quer enfatizar que não é você que cagou no pau?') do |q|
-          q.positive 'SIM'
-          q.negative 'não'
+          q.positive 'S'
+          q.negative 'n'
         end
       end
     end
