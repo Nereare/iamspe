@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = %w[lib]
 
   spec.add_dependency 'activesupport', '~> 8.1', '>= 8.1.1'
+  spec.add_dependency 'clipboard', '~> 2.0'
   spec.add_dependency 'sqlite3', '~> 1.3', '>= 1.3.11'
   spec.add_dependency 'tty-config', '~> 0.6.0'
   spec.add_dependency 'tty-exit', '~> 0.1.0'
