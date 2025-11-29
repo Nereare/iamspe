@@ -12,8 +12,8 @@ module Iamspe
       @prompt = TTY::Prompt.new
       # Inicializar TTY::Config
       @config = TTY::Config.new
-      @config.filename = ".iamspe"
-      @config.append_path ENV['HOME']
+      @config.filename = '.iamspe'
+      @config.append_path DIR.home
       # Checar completude da configuração
       check_fullness
       # Compilar configuração
@@ -27,13 +27,13 @@ module Iamspe
     end
 
     def check_name
-      if @config.fetch(:nome, default: nil).nil?
-        name = @prompt.ask('Qual seu nome completo?') do |q|
-          q.required true
-          q.modify   :capitalize, :strip
-        end
-        @config.set(:nome, name)
+      return unless @config.fetch(:nome, default: nil).nil?
+
+      name = @prompt.ask('Qual seu nome completo?') do |q|
+        q.required true
+        q.modify   :capitalize, :strip
       end
+      @config.set(:nome, name)
     end
   end
 end
