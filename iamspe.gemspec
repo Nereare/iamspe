@@ -29,12 +29,14 @@ Gem::Specification.new do |spec|
     'Rakefile'
   ]
   spec.bindir        = 'bin'
-  spec.executables   = 'chefia'
+  spec.executables   = %w[chefia porta]
   spec.require_paths = %w[lib]
 
   spec.add_dependency 'activesupport', '~> 8.1', '>= 8.1.1'
   spec.add_dependency 'sqlite3', '~> 1.3', '>= 1.3.11'
+  spec.add_dependency 'tty-exit', '~> 0.1.0'
   spec.add_dependency 'tty-font', '~> 0.5.0'
+  spec.add_dependency 'tty-option', '~> 0.3.0'
   spec.add_dependency 'tty-pie', '~> 0.4.0'
   spec.add_dependency 'tty-prompt', '~> 0.23'
   spec.add_dependency 'tty-table', '~> 0.12.0'
