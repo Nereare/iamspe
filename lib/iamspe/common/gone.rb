@@ -9,7 +9,6 @@ module Iamspe
     class Gone
       # Inicializador
       def initialize
-        puts 'BAI'
         # Inicializar TTY::Prompt
         @prompt = TTY::Prompt.new
         # Compilar texto de "output"
