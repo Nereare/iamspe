@@ -13,10 +13,11 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '~> 3.2'
 
-  spec.metadata['source_code_uri']   = spec.homepage
-  spec.metadata['bug_tracker_uri']   = 'https://github.com/Nereare/iamspe/issues'
-  spec.metadata['changelog_uri']     = 'https://github.com/Nereare/iamspe/blob/master/CHANGELOG.md'
-  spec.metadata['documentation_uri'] = 'https://nereare.github.io/iamspe/'
+  spec.metadata['source_code_uri']       = spec.homepage
+  spec.metadata['bug_tracker_uri']       = 'https://github.com/Nereare/iamspe/issues'
+  spec.metadata['changelog_uri']         = 'https://github.com/Nereare/iamspe/blob/master/CHANGELOG.md'
+  spec.metadata['documentation_uri']     = 'https://nereare.github.io/iamspe/'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.files = Dir[
     'lib/**/*.rb',
