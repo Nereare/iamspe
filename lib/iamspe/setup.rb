@@ -61,6 +61,7 @@ module Iamspe
       check_register_number
       check_register_state
       intensive_sectors
+      db_name
     end
 
     # Submétodo de checagem de setores críticos
@@ -135,6 +136,13 @@ module Iamspe
         q.convert  :int
       end
       @config.set(:dt, :leitos, value: dt)
+    end
+
+    # Checar nome e local do arquivo de banco de dados
+    def db_name
+      return unless @config.fetch(:db, default: nil).nil?
+
+      @config.set(:db, value: "#{Dir.home}/.iamspe.db")
     end
   end
 end
