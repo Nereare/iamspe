@@ -69,9 +69,9 @@ module Iamspe
       when 'versao' then puts Iamspe::VERSION
       when 'licenca' then puts Iamspe::LICENSE
       when 'ajuda' then puts help
-      when 'porta' then Iamspe::Door.new
+      when 'porta' then Iamspe::Door::Starter.new
       else
-        Iamspe::Bossy.new
+        Iamspe::Bossy::Starter.new
       end
     end
 
