@@ -2,6 +2,12 @@
 
 # Clear the terminal
 clear
+# Install dependencies / Update lock version
+bundle
+# Pause to let user see results
+read -n 1 -s -r -p "Press any key to continue..."
+clear
+
 # Remove old gem, then build and install new version
 gem uninstall iamspe
 echo
@@ -14,7 +20,7 @@ rm -vf iamspe-*.gem
 echo
 # Pause to let user see results
 read -n 1 -s -r -p "Press any key to continue..."
+clear
 
 # Run chefia to verify installation
-clear
 chefia
