@@ -7,6 +7,7 @@ require 'tty-prompt'
 module Iamspe
   # Classe de inicialização de configurações, caso não configuradas
   class Setup
+    # Lista de Unidades Federativas do Brasil e suas siglas
     ESTADOS = [
       { name: 'Acre', value: 'AC' },
       { name: 'Alagoas', value: 'AL' },
