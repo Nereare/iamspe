@@ -27,7 +27,7 @@ module Iamspe
         txt = @prompt.multiline('Colar (Ctrl+V) as colunas B-F do controle de salas (incluindo linhas em branco):') do |q|
           q.help 'Use Ctrl+D quando terminar de colar'
         end
-        txt.filter! do |elem|
+        txt.filter! do |_elem|
           elem ~ /(\d+|Rv)\t([A-zÇçáéíóúãõôê ]+)\t(07-19+h)\t([0-9A-z'-]+)\t(\d+h\d+)/
         end
         puts txt.join "\n"

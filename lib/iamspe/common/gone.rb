@@ -53,7 +53,9 @@ module Iamspe
           q.required true
           q.convert  :time
         end
-        "com último atendimento em #{parse_time(date, :date)} às #{parse_time(time, :time)} e sem novas reavaliações desde então"
+        "com último atendimento em #{parse_time(date,
+                                                :date)} às #{parse_time(time,
+                                                                        :time)} e sem novas reavaliações desde então"
       end
 
       # Questionar se exames laboratoriais pendentes
@@ -90,7 +92,7 @@ module Iamspe
         tz = TZInfo::Timezone.get('America/Sao_Paulo')
         time = Time.parse time
         time = tz.to_local(time)
-        format = format == :date ? "%d\/%m\/%Y" : '%kh%M'
+        format = format == :date ? '%d/%m/%Y' : '%kh%M'
         time.strftime(format)
       end
     end

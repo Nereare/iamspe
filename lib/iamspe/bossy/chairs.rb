@@ -81,7 +81,7 @@ module Iamspe
         tz = TZInfo::Timezone.get('America/Sao_Paulo')
         now = Time.now
         now = tz.to_local(now)
-        now.strftime("%e\/%b")
+        now.strftime('%e/%b')
       end
     end
   end

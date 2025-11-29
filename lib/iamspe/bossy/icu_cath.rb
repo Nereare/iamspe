@@ -15,11 +15,10 @@ module Iamspe
         @config = TTY::Config.new
         @config.filename = '.iamspe'
         @config.append_path Dir.home
-        if @config.exist?
-          @config.read
-        else
-          raise new Error, 'Arquivo de configuração não encontrado'
-        end
+        raise new Error, 'Arquivo de configuração não encontrado' unless @config.exist?
+
+        @config.read
+
         # Inicializar variáveis
         @patients = []
         @dt_beds = @config.fetch(:dt, :leitos)
@@ -121,17 +120,17 @@ module Iamspe
               end
         semi = build_sector_patients('Semi', :icu)
         semi = if semi.empty?
-                ['*Semi:*', '- Sem indicações']
-              else
-                ['*Semi:*'].concat(semi)
-              end
+                 ['*Semi:*', '- Sem indicações']
+               else
+                 ['*Semi:*'].concat(semi)
+               end
         if @dt_beds
           dt = build_sector_patients('DT', :icu)
           dt = if dt.empty?
-                ['*DT:*', '- Sem indicações']
-              else
-                ['*DT:*'].concat(dt)
-              end
+                 ['*DT:*', '- Sem indicações']
+               else
+                 ['*DT:*'].concat(dt)
+               end
         else
           dt = []
         end
@@ -160,17 +159,17 @@ module Iamspe
               end
         semi = build_sector_patients('Semi', :cath)
         semi = if semi.empty?
-                ['*Semi:*', '- Sem indicações']
-              else
-                ['*Semi:*'].concat(semi)
-              end
+                 ['*Semi:*', '- Sem indicações']
+               else
+                 ['*Semi:*'].concat(semi)
+               end
         if @dt_beds
           dt = build_sector_patients('DT', :cath)
           dt = if dt.empty?
-                ['*DT:*', '- Sem indicações']
-              else
-                ['*DT:*'].concat(dt)
-              end
+                 ['*DT:*', '- Sem indicações']
+               else
+                 ['*DT:*'].concat(dt)
+               end
         else
           dt = []
         end

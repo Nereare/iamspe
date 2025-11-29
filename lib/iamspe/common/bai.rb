@@ -33,7 +33,7 @@ module Iamspe
         tz = TZInfo::Timezone.get('America/Sao_Paulo')
         now = Time.now
         now = tz.to_local(now)
-        now.strftime("%kh%M de %d\/%m\/%Y")
+        now.strftime('%kh%M de %d/%m/%Y')
       end
 
       # Obter filho da égua que abandonou prontuário aberto
@@ -46,7 +46,7 @@ module Iamspe
           q.required true
           q.convert  :int
         end
-        crm = crm.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse
+        crm = crm.to_s.reverse.gsub(/...(?=.)/, '\&,').reverse
         [name, crm]
       end
 
