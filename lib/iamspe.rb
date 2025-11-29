@@ -6,6 +6,7 @@ require 'tty-option'
 
 require_relative 'iamspe/bossy'
 require_relative 'iamspe/meta'
+require_relative 'iamspe/setup'
 
 # Módulo principal da gema
 module Iamspe
@@ -79,6 +80,7 @@ module Iamspe
       if params.errors.any?
         exit_with(:usage_error, params.errors.summary)
       else
+        Iamspe::Setup.new
         run_actions
       end
     end

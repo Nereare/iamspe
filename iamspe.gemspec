@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activesupport', '~> 8.1', '>= 8.1.1'
   spec.add_dependency 'sqlite3', '~> 1.3', '>= 1.3.11'
+  spec.add_dependency 'tty-config', '~> 0.6.0'
   spec.add_dependency 'tty-exit', '~> 0.1.0'
   spec.add_dependency 'tty-font', '~> 0.5.0'
   spec.add_dependency 'tty-option', '~> 0.3.0'
