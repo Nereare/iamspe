@@ -8,6 +8,8 @@ require 'iamspe'
 ARGV.delete 'porta'
 ARGV.push('chefia') unless ARGV.include?('chefia')
 
+# Tentar limpar a tela
+system 'clear' || system 'cls'
 # Iniciar o comando apropriado
 cmd = Iamspe::Starter.new
 cmd.parse(ARGV)
