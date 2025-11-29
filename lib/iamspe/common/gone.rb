@@ -42,7 +42,7 @@ module Iamspe
           q.positive 's'
           q.negative 'N'
         end
-        '' unless foo
+        return '' if foo
 
         date = @prompt.ask('Que dia foi a última avaliação?') do |q|
           q.required true
@@ -61,7 +61,7 @@ module Iamspe
           q.positive 's'
           q.negative 'N'
         end
-        '' unless foo
+        return '' if foo
 
         done = @prompt.no?('Tais exames foram colhidos?') do |q|
           q.positive 's'
