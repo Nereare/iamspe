@@ -13,5 +13,15 @@ Gemspec/DevelopmentDependencies:
   Enabled: false
 Metrics/BlockLength:
   Max: 50
-  Exclude:
-    - 'spec/**/*.rb'
+Metrics/ClassLength:
+  Max: 200
+Metrics/PerceivedComplexity:
+  Max: 15
+Metrics/MethodLength:
+  Max: 50
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Max: 10
+Layout/LineLength:
+  Enabled: false

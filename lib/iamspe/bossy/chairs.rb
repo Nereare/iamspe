@@ -19,7 +19,6 @@ module Iamspe
         raise new Error, 'Arquivo de configuração não encontrado' unless @config.exist?
 
         @config.read
-
         # Obter chefe de plantão
         @chief = @config.fetch(:nome)
         # Coletar pacientes e interpretar dados
@@ -55,12 +54,8 @@ module Iamspe
         age = patient[2].empty? ? '' : " #{patient[2]}a"
         dx = patient[9].nil? ? '?' : patient[9].strip
         prior = case patient[0]
-                when 'A'
+                when 'A', 'B'
                   'Alta'
-                when 'B'
-                  'Alta'
-                when 'C'
-                  'Média'
                 when 'D'
                   'Baixa'
                 else

@@ -28,7 +28,7 @@ module Iamspe
           q.help 'Use Ctrl+D quando terminar de colar'
         end
         txt.filter! do |_elem|
-          elem ~ /(\d+|Rv)\t([A-zÇçáéíóúãõôê ]+)\t(07-19+h)\t([0-9A-z'-]+)\t(\d+h\d+)/
+          elem ~ /(\d+|Rv)\t([A-Za-zÇçáéíóúãõôê ]+)\t(07-19+h)\t([0-9A-Za-z'-]+)\t(\d+h\d+)/
         end
         puts txt.join "\n"
       end
