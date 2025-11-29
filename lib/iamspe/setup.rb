@@ -35,7 +35,7 @@ module Iamspe
       { name: 'São Paulo', value: 'SP' },
       { name: 'Sergipe', value: 'SE' },
       { name: 'Tocantins', value: 'TO' }
-    ]
+    ].freeze
 
     # Iniciar classe
     def initialize
