@@ -28,13 +28,13 @@ module Iamspe
                when :lunch then Iamspe::Bossy::Lunch.new
                else # Início de Plantão
                  full = []
-                 puts @pastel.cyan.strong('# Repouso no leito #')
+                 puts @pastel.cyan.bold('# Repouso no leito #')
                  full << Iamspe::Bossy::Chairs.new
                  puts ''
-                 puts @pastel.cyan.strong('# UTIs / CATEs #')
+                 puts @pastel.cyan.bold('# UTIs / CATEs #')
                  full << Iamspe::Bossy::IcuCath.new
                  puts ''
-                 puts @pastel.cyan.strong('# Almoços #')
+                 puts @pastel.cyan.bold('# Almoços #')
                  full << Iamspe::Bossy::Lunch.new
                  puts ''
                  full.join("\n---\n")
