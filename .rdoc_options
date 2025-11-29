@@ -1,0 +1,22 @@
+---
+encoding: UTF-8
+exclude:
+- bin/*
+- .gitattributes
+- .gitignore
+- .rspec
+- .rubocop.yml
+- .ruby-version
+- CHANGELOG.md
+- CODE-OF-CONDUCT.md
+- CONTRIBUTING.md
+- Gemfile
+- Gemfile.lock
+- LICENSE.md
+- Rakefile
+line_numbers: true
+main_page: README.md
+markup: rdoc
+output_decoration: true
+tab_width: 2
+title: Ferramentas PS Iamspe
