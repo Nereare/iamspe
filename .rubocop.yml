@@ -5,6 +5,8 @@ AllCops:
     - 'db/schema.rb'
     - 'vendor/**/*'
 
+Gemspec/DevelopmentDependencies:
+  Enabled: false
 Metrics/BlockLength:
   Max: 50
   Exclude:
