@@ -17,8 +17,7 @@ module Iamspe
     # Argumento de comando (chefia ou porta)
     argument :comando do
       name    'comando (chefia ou porta)'
-      arity   1
-      default 'chefia'
+      arity   :*
       permit  %w[chefia porta]
       desc    'Qual o setor cujas funções devem ser iniciadas'
     end
@@ -47,8 +46,8 @@ module Iamspe
     # Definir texto personalizado de ajuda
     usage do
       pastel = Pastel.new
-      program pastel.blue(Iamspe::SLUG).to_s
-      no_comando
+      program pastel.blue('chefia|porta').to_s
+      no_command
       header pastel.cyan(Iamspe::NAME).to_s
       header Iamspe::DESCRIPTION.to_s
       footer "Disponível sob a licença #{pastel.green(Iamspe::LICENSE)}, feito com ranço por #{pastel.blue(Iamspe::AUTHOR)}."
@@ -69,9 +68,9 @@ module Iamspe
       when 'versao' then puts Iamspe::VERSION
       when 'licenca' then puts Iamspe::LICENSE
       when 'ajuda' then puts help
-      when 'chefia' then Iamspe::Bossy.new
+      when 'porta' then Iamspe::Door.new
       else
-        Iamspe::Door.new
+        Iamspe::Bossy.new
       end
     end
 
