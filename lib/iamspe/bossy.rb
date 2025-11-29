@@ -48,12 +48,12 @@ module Iamspe
       # Decidir qual método acionar com base na escolha do usuário e retornar símbolo correspondente
       def decide_method
         @prompt.select('O que iremos gerar?') do |q|
-          q.choice(name: 'Início de plantão', disabled: '(WIP)', value: :start)
+          q.choice(name: 'Início de plantão', value: :start)
           q.choice(name: 'Repouso no leito', value: :chairs)
           q.choice(name: 'Setores Críticos', value: :icu_cath)
           q.choice(name: 'Alta Retroativa', value: :bai)
           q.choice(name: 'Evasão', value: :gone)
-          q.choice(name: 'Almoços', disabled: '(WIP)', value: :lunch)
+          q.choice(name: 'Almoços', value: :lunch)
         end
       end
     end
