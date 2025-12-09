@@ -1,0 +1,26 @@
+name: ❓ Pergunta
+description: Nos pergunte qualquer coisa sobre o projeto!
+title: "[Question]: "
+labels:
+  - question
+type: question
+body:
+  - type: markdown
+    attributes:
+      value: Nem sempre tudo é claro! Sinta-se à vontade para nos fazer qualquer pergunta sobre o projeto!
+  - type: textarea
+    id: question
+    attributes:
+      label: Qual é a sua pergunta?
+      description: Como podemos te ajudar?
+      placeholder: Pergunta...
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Código de Conduta
+      description: Ao submeter esse _issue_, você concorda em aderir ao nosso [Código de Conduta](https://www.contributor-covenant.org/pt-br/version/2/1/code_of_conduct/).
+      options:
+        - label: Concordo em seguir o Código de Conduta deste projeto
+          required: true

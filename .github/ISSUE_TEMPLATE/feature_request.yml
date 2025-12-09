@@ -1,0 +1,49 @@
+name: 🛠️ Solicitar uma Melhoria
+description: Solicitar uma nova funcionalidade ou melhoria para a gema.
+title: "[Feature Request]: "
+labels:
+  - enhancement
+type: feature
+body:
+  - type: markdown
+    attributes:
+      value: Ficamos contentes que você queira sugerir uma melhoria!
+  - type: input
+    id: issue
+    attributes:
+      label: Código do _Issue_ (opcional)
+      description: Se houver algum erro associado à solicitação de melhoria, favor informar o código do _issue_ aqui.
+      placeholder: "#1234"
+    validations:
+      required: false
+  - type: textarea
+    id: feature
+    attributes:
+      label: Descreva a melhoria desejada
+      description: Descreva brevemente o que você gostaria que fosse implementado.
+      placeholder: Descrição da melhoria...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas tentadas
+      description: Caso você tenha tentado usar alguma das funcionalidades atuais da gema para resolver sua necessidade, descreva aqui.
+      placeholder: Alternativas tentadas...
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Versão da Gema
+      description: Qual a versão da gema que você está usando?
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Código de Conduta
+      description: Ao submeter esse _issue_, você concorda em aderir ao nosso [Código de Conduta](https://www.contributor-covenant.org/pt-br/version/2/1/code_of_conduct/).
+      options:
+        - label: Concordo em seguir o Código de Conduta deste projeto
+          required: true

@@ -1,0 +1,55 @@
+name: 🪲 Reporte de _Bug_
+description: Reportar um erro.
+title: "[Bug]: "
+labels:
+  - bug
+type: bug
+body:
+  - type: markdown
+    attributes:
+      value: Obrigado por dedicar seu tempo para preencher este reporte de _bug_!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Descreva o _bug_
+      description: Descreva brevemente o erro e o que você esperava que acontecesse.
+      placeholder: O que aconteceu?
+    validations:
+      required: true
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: Como reproduzir o _bug_
+      description: Descreva o passo-a-passo de como reproduzir o erro.
+      placeholder: Lista de passos...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versão da Gema
+      description: Qual a versão da gema que está apresentando o erro?
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Sistema Operacional
+      description: Qual o SO em que você está rodando a gema?
+    validations:
+      required: true
+  - type: input
+    id: terminal
+    attributes:
+      label: Terminal
+      description: Qual o terminal em que você está rodando a gema?
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Código de Conduta
+      description: Ao submeter esse _issue_, você concorda em aderir ao nosso [Código de Conduta](https://www.contributor-covenant.org/pt-br/version/2/1/code_of_conduct/).
+      options:
+        - label: Concordo em seguir o Código de Conduta deste projeto
+          required: true

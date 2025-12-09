@@ -1,14 +1,18 @@
-Describe concisely the changes implemented by the code on this pull request.
+# Título
 
-- **Added:**
-  - Added stuff on this PR.
-- **Changed:**
-  - Changed stuff on this PR.
-- **Deprecated:**
-  - Deprecated stuff on this PR.
-- **Removed:**
-  - Removed stuff on this PR.
-- **Fixed:**
-  - Fixed stuff on this PR.
-- **Security:**
-  - Security stuff on this PR.
+Descreva brevemente, em narrativa direcionada **para humanos**, as mudanças que esse _pull request_ implementa.
+
+## Sumário
+
+- **Adicionado:**
+  - ...
+- **Modificado:**
+  - ...
+- **Obsoleto:**
+  - ...
+- **Removido:**
+  - ...
+- **Corrigido:**
+  - ...
+- **Segurança:**
+  - ...

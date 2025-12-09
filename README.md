@@ -40,7 +40,7 @@ O uso implica apenas digitar o nome do executável em questão no seu _bash_, _c
 
 Por favor, também leias nossas [Diretrizes de Contribuição](CONTRIBUTING.md).
 
-### Code of Conduct
+### Código de Conduta
 
 Note que este projeto é disponibilizado sob um [Código de Conduta](CODE-OF-CONDUCT.md).
 

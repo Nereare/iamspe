@@ -1,33 +1,24 @@
-# Contributing Guidelines
+# Diretrizes de Contribuição
 
-When contributing to this repository, please first discuss the change you wish
-to make via issue, email, or any other method with the owners of this repository
-before making a change.
+Quando contribuir para este repositório, por favor primeiro discutir as mudanças desejadas via [aba de _Issues_](https://github.com/Nereare/iamspe/issues/new/choose) antes de implementá-las.
 
-Please note we have a [Code of Conduct](CODE-OF-CONDUCT.md), please follow it in
-all your interactions with the project.
+Por favor, note que temos um [Código de Conduta](CODE-OF-CONDUCT.md), é obrigatório segui-lo em todas as interações com este projeto.
 
-## Pull Request Checklist
+## Lista de Tarefas para _Pull Request_
 
-Before sending your pull requests, make sure you followed this list.
+Antes de enviar um _pull request_, garanta-se de seguir todos os passos desta lista:
 
-1. Read the [Contributing Guidelines](CONTRIBUTING.md).
-2. Read the [Code of Conduct](CODE-OF-CONDUCT.md).
-3. Increase the version numbers to the new version that this Pull Request would
-   represent in the files below:
-    - Any example files
-    - [Ruby metafile](lib/iamspe/meta.rb)
-    - **Note:** the versioning scheme we use is [SemVer](http://semver.org/)!
-4. You may merge the Pull Request in once you have the approval of the project
-   owner.
+1. Ler as [Diretrizes de Contribuição](CONTRIBUTING.md).
+2. Ler o [Código de Conduta](CODE-OF-CONDUCT.md).
+3. Aumentar o número de versão em respeito ao [Versionamento Semântico 2.0.0](https://semver.org/lang/pt-BR/spec/v2.0.0.html) em todos os arquivos:
+    - Qualquer arquivo de exemplo; e
+    - [Metarquivo Ruby](lib/iamspe/meta.rb).
+4. Obter aprovação do mantenedor do projeto.
 
-## Reporting a Bug & Requesting Features
+## Reportando um _Bug_ & Solicitando _Features_
 
-For both actions, this project uses GitHub templates, please use the adequate
-template when either reporting a bug or requesting a new feature.
+Este projeto usa modelos de _issue_ correspondentes para cada uma destas ações, vá para a [aba de _Issues_](https://github.com/Nereare/iamspe/issues/new/choose) e selecione o modelo aplicável.
 
-## Licensing and copyright
+## Licenciamento & Copyright
 
-Please note that accepted contributions are included in the repository and hence
-added under the same [license](LICENSE.md) as the repository to which it was
-contributed.
+Por favor note que contribuições aceitas para o projeto são inclusas no repositório e passam a estar, portanto, licenciadas sob a mesma [licença](LICENSE.md) que todo o resto deste projeto.
