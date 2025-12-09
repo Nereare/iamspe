@@ -26,7 +26,7 @@ module Iamspe
       # Converter em _String_, no caso sendo o texto de "output"
       def to_s
         Clipboard.copy(@out)
-        @out
+        @out.prepend "<< Texto copiado! >>\n\n"
       end
 
       private

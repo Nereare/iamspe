@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'clipboard'
 require 'tty-config'
 require 'tty-prompt'
 
@@ -33,19 +34,17 @@ module Iamspe
 
       # Compilar texto de "output" e retorná-lo como _String_
       def to_s
-        [
-          '# CATE',
-          '',
-          @cath,
-          '',
-          '# UTI',
-          '',
-          @icu,
-          '_Ocupação:_',
-          @occupation,
-          '',
-          '*Obs.:* colegas dos setores já cobrados de solicitar UTI para *todo* paciente que não tiver previsão de alta para enfermaria nas próximas 24h.'
-        ].join "\n"
+        # Texto de CATEs
+        Clipboard.copy(@cath)
+        puts @cath.prepend("<< Texto de CATE copiado! >>\n\n")
+        @prompt.keypress('Pressione qualquer tecla para continuar, ou aguarde mais :countdown s...', timeout: 60)
+
+        # Texto de UTIs
+        @icu = @icu.concat '_Ocupação:_', "\n", @occupation, "\n\n", '*Obs.:* colegas dos setores já cobrados de solicitar UTI para *todo* paciente que não tiver previsão de alta para enfermaria nas próximas 24h.'
+        Clipboard.copy(@icu)
+        puts @icu.prepend("<< Texto de UTI copiado! >>\n\n")
+
+        'Feito~ :)'
       end
 
       private

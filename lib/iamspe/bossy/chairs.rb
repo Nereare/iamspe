@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support'
+require 'clipboard'
 require 'tty-prompt'
 require 'tzinfo'
 
@@ -30,7 +31,8 @@ module Iamspe
 
       # Converter em _String_, no caso sendo o texto de "output"
       def to_s
-        @out
+        Clipboard.copy(@out)
+        @out.prepend "<< Texto copiado! >>\n\n"
       end
 
       private

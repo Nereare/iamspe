@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'clipboard'
 require 'tty-prompt'
 require 'tzinfo'
 
@@ -17,7 +18,8 @@ module Iamspe
 
       # Converter em _String_, no caso sendo o texto de "output"
       def to_s
-        @out
+        Clipboard.copy(@out)
+        @out.prepend "<< Texto copiado! >>\n\n"
       end
 
       private
@@ -82,7 +84,7 @@ module Iamspe
         end
         "não é localizado na unidade" unless foo
 
-        "para o qual solicito auxílio da equipe de Apoio Médico para Busca Ativa de paciente nas dependências do PS, não é encontrado na unidade"
+        "para o qual solicito auxílio da equipe de Apoio Médico para Busca Ativa nas dependências do PS, não é encontrado na unidade"
       end
 
       # Obter tempo em formato configurado para região
