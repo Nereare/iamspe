@@ -16,6 +16,7 @@ exclude:
 - Rakefile
 - schema.sql
 - iamspe.rbs
+- util.sh
 line_numbers: true
 main_page: README.md
 markup: rdoc
