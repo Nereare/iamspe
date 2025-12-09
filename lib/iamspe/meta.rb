@@ -8,7 +8,7 @@ module Iamspe
   # Descrição da gema
   DESCRIPTION  = 'Uma criatura-de-frankenstein de ferramentas ainda não incluídas no projeto principal.'
   # Versão da gema
-  VERSION      = '0.4.0'
+  VERSION      = '1.0.0'
   # Nome do autor da gema
   AUTHOR       = 'Igor Padoim'
   # Email do autor da gema
