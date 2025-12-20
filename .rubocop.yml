@@ -25,3 +25,5 @@ Metrics/CyclomaticComplexity:
   Max: 10
 Layout/LineLength:
   Enabled: false
+Lint/Void:
+  Enabled: false
