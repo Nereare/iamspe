@@ -40,11 +40,9 @@ module Iamspe
         @prompt.keypress('Pressione qualquer tecla para continuar, ou aguarde mais :countdown s...', timeout: 60)
 
         # Texto de UTIs
-        @icu = @icu.concat '_Ocupação:_', "\n", @occupation, "\n\n", '*Obs.:* colegas dos setores já cobrados de solicitar UTI para *todo* paciente que não tiver previsão de alta para enfermaria nas próximas 24h.'
+        @icu.concat '_Ocupação:_', "\n", @occupation, "\n\n", '*Obs.:* colegas dos setores já cobrados de solicitar UTI para *todo* paciente que não tiver previsão de alta para enfermaria nas próximas 24h.'
         Clipboard.copy(@icu)
-        puts @icu.prepend("<< Texto de UTI copiado! >>\n\n")
-
-        'Feito~ :)'
+        '<< Texto de UTI copiado! >>'
       end
 
       private

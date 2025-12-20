@@ -82,9 +82,9 @@ module Iamspe
           q.positive 'S'
           q.negative 'n'
         end
-        "não é localizado na unidade" unless foo
+        'não é localizado na unidade' unless foo
 
-        "para o qual solicito auxílio da equipe de Apoio Médico para Busca Ativa nas dependências do PS, não é encontrado na unidade"
+        'para o qual solicito auxílio da equipe de Apoio Médico para Busca Ativa nas dependências do PS, não é encontrado na unidade'
       end
 
       # Obter tempo em formato configurado para região

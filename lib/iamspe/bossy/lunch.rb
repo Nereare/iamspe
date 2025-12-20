@@ -9,15 +9,15 @@ module Iamspe
     class Lunch
       # Texto base do anúncio de almoços
       BASE_TXT = [
-          "\x2a🍝 \x60Almoços\x60 🍨\x2a",
-          '',
-          "\x2a🩺 Porta\x2a",
-          '{{ DOOR }}',
-          "\x2a👀 Observação Térreo\x2a",
-          '{{ OBS }}',
-          '',
-          "\x2aPlantonistas 12h:\x2a \x601h\x60 de almoço",
-          "\x2aPlantonistas 6h:\x2a \x6015min\x60 de pausa"
+        "\x2a🍝 \x60Almoços\x60 🍨\x2a",
+        '',
+        "\x2a🩺 Porta\x2a",
+        '{{ DOOR }}',
+        "\x2a👀 Observação Térreo\x2a",
+        '{{ OBS }}',
+        '',
+        "\x2aPlantonistas 12h:\x2a \x601h\x60 de almoço",
+        "\x2aPlantonistas 6h:\x2a \x6015min\x60 de pausa"
       ].join("\n").freeze
 
       # Inicializador
@@ -31,7 +31,7 @@ module Iamspe
       # Converter em _String_, no caso sendo o texto de "output"
       def to_s
         Clipboard.copy(@out)
-        @out.prepend "<< Texto copiado! >>\n\n"
+        '<< Texto copiado! >>'
       end
 
       private
@@ -68,7 +68,7 @@ module Iamspe
           end
           break if name.nil?
 
-          scheme = @prompt.select("Duração do plantão:") do |q|
+          scheme = @prompt.select('Duração do plantão:') do |q|
             q.choice '12h', 12
             q.choice '6h', 6
           end
@@ -77,13 +77,14 @@ module Iamspe
         names = physicians.map do |p|
           p[:name]
         end
-        if physicians.length == 4
+        case physicians.length
+        when 4
           # Se todo mundo de 6h
           last = names.pop
           "#{names.join(', ')}, e #{last} podem dividir os horários de lanche entre si conforme fluxo da Observação, sempre ficando pelo menos um plantonista presente."
-        elsif physicians.length == 3
+        when 3
           "#{names[0]}, preferencialmente sair para almoçar após #{names[2]} render #{names[1]} às 13h."
-        elsif physicians.length == 2
+        when 2
           "#{names[0]} e #{names[1]} podem dividir entre si conforme fluxo da Observação, sempre ficando pelo menos um plantonista presente."
         else
           'Se organizem conforme fluxo da Obs para seus horários de lanche, sempre ficando pelo menos um plantonista presente.'
