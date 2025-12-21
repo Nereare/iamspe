@@ -26,18 +26,9 @@ module Iamspe
                when :gone then Iamspe::Common::Gone.new
                when :icu_cath then Iamspe::Bossy::IcuCath.new
                when :lunch then Iamspe::Bossy::Lunch.new
-               else # Início de Plantão
-                 full = []
-                 puts @pastel.cyan.bold('# Repouso no leito #')
-                 full << Iamspe::Bossy::Chairs.new
-                 puts ''
-                 puts @pastel.cyan.bold('# UTIs / CATEs #')
-                 full << Iamspe::Bossy::IcuCath.new
-                 puts ''
-                 puts @pastel.cyan.bold('# Almoços #')
-                 full << Iamspe::Bossy::Lunch.new
-                 puts ''
-                 full.join("\n---\n")
+               else # Sair
+                 puts @pastel.green('Bai!')
+                 exit 0
                end
         # Exibir o resultado
         puts @out
@@ -54,6 +45,8 @@ module Iamspe
           q.choice(name: 'Alta Retroativa', value: :bai)
           q.choice(name: 'Evasão', value: :gone)
           q.choice(name: 'Almoços', value: :lunch)
+          q.choice(name: 'Sair', value: :exit)
+          q.per_page 20
         end
       end
     end

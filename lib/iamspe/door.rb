@@ -20,8 +20,10 @@ module Iamspe
                when :rest then Iamspe::Door::Rest.new
                when :bai then Iamspe::Common::Bai.new
                when :gone then Iamspe::Common::Gone.new
-               else # Reavaliação
-                 Iamspe::Door::Reeval.new
+               when :reeval then Iamspe::Door::Reeval.new
+               else # Sair
+                 puts @pastel.green('Bai!')
+                 exit 0
                end
         # Exibir o resultado
         puts @out
@@ -36,6 +38,8 @@ module Iamspe
           q.choice(name: 'Alta Retroativa', value: :bai)
           q.choice(name: 'Evasão', value: :gone)
           q.choice(name: 'Reavaliação', value: :reeval)
+          q.choice(name: 'Sair', value: :exit)
+          q.per_page 20
         end
       end
     end
