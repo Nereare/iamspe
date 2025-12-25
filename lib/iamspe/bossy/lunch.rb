@@ -31,7 +31,7 @@ module Iamspe
       # Converter em _String_, no caso sendo o texto de "output"
       def to_s
         Clipboard.copy(@out)
-        '<< Texto copiado! >>'
+        "\n<< Texto copiado! >>"
       end
 
       private
@@ -50,7 +50,7 @@ module Iamspe
           q.help 'Use Ctrl+D quando terminar de colar'
         end
         txt.filter! do |elem|
-          /(\d+|Rv)\t([A-Za-zÇçáéíóúãõôê ]+)\t(07-19+h)\t([0-9A-Za-z'-]+)\t(\d+h\d+)/.match?(elem)
+          /(\d+|Rv)\t([A-Za-zÇçáéíóúãõôê ]+)\t(\d{2}-\d{2}h)\t([0-9A-Za-z'-]+)\t(\d+h\d+)/.match?(elem)
         end
         txt.map! do |elem|
           person = elem.split("\t")
