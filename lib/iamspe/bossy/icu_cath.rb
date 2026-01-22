@@ -36,11 +36,11 @@ module Iamspe
       def to_s
         # Texto de CATEs
         Clipboard.copy(@cath)
-        puts @cath.prepend("<< Texto de CATE copiado! >>\n\n")
+        puts "<< Texto de CATE copiado! >>\n\n"
         @prompt.keypress('Pressione qualquer tecla para continuar, ou aguarde mais :countdown s...', timeout: 60)
 
         # Texto de UTIs
-        @icu.concat '_Ocupação:_', "\n", @occupation, "\n\n", '*Obs.:* colegas dos setores já cobrados de solicitar UTI para *todo* paciente que não tiver previsão de alta para enfermaria nas próximas 24h.'
+        @icu.concat "\n", '_Ocupação:_', "\n", @occupation, "\n\n", '*Obs.:* colegas dos setores já cobrados de solicitar UTI para *todo* paciente que não tiver previsão de alta para enfermaria nas próximas 24h.'
         Clipboard.copy(@icu)
         '<< Texto de UTI copiado! >>'
       end
@@ -100,10 +100,12 @@ module Iamspe
 
         if i < @eme_beds
           ["- #{i} pacientes", "- #{@eme_beds - i} leitos *vagos*"].join "\n"
+        elsif i == @eme_beds
+          ["- #{i} pacientes", '- *SEM* leitos vagos'].join "\n"
         elsif i < @eme_ext
           ["- #{i} pacientes", "- #{@eme_ext - i} leitos extras *vagos*", '- Segundo salão da EME em uso'].join "\n"
         else
-          ["- #{i} pacientes", '- *SEM* leitos vagos', '- Segundo salão da EME em uso'].join "\n"
+          ["- #{i} pacientes", '- *SEM* quaisquer leitos vagos', '- Segundo salão da EME em uso'].join "\n"
         end
       end
 
@@ -121,7 +123,7 @@ module Iamspe
                else
                  ['*Semi:*'].concat(semi)
                end
-        if @dt_beds
+        if @dt_beds.positive?
           dt = build_sector_patients('DT', :icu)
           dt = if dt.empty?
                  ['*DT:*', '- Sem indicações']
@@ -160,7 +162,7 @@ module Iamspe
                else
                  ['*Semi:*'].concat(semi)
                end
-        if @dt_beds
+        if @dt_beds.positive?
           dt = build_sector_patients('DT', :cath)
           dt = if dt.empty?
                  ['*DT:*', '- Sem indicações']
@@ -188,7 +190,10 @@ module Iamspe
       # Formatar lista de pacientes por setor e tipo
       def build_sector_patients(sector, type)
         sector = @patients.map do |pt|
-          "- #{pt[:name]}" if pt[:sector] == sector && pt[type]
+          ptt = "- #{pt[:name]}"
+          ptt += pt[:cathwhen] if type == :cath && !pt[:cathwhen].nil?
+          ptt += ' (após CATE)' if type == :icu && pt[:cath]
+          ptt if pt[:sector] == sector && pt[type]
         end
         sector.compact
       end

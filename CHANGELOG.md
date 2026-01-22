@@ -5,6 +5,10 @@ Todas as mudanças relevantes a este projeto serão documentadas neste arquivo.
 O formato é baseado e os textos traduzidos de [Mantenha um Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e este projeto adere ao [Versionamento Semântico 2.0.0](https://semver.org/lang/pt-BR/spec/v2.0.0.html).
 
 ## [Não publicado]
+### Adicionado
+- Opção de saída!
+### Modificado
+- Corrigidos bugs de processamento de dados no módulo de _Setores Críticos_.
 
 ## [1.0.0]
 ### Adicionado
