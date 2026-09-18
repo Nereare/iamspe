@@ -167,14 +167,23 @@ module Iamspe
       end
     end
 
+    # Atualizar arquivo existente de banco de dados com tabelas faltantes
+    def update_db(missing_tables)
+      db_name = @config.fetch(:db)
+      @db = SQLite3::Database.new(db_name, { results_as_hash: true })
+      missing_tables.each do |table|
+        table_file = "#{File.expand_path('../db', __dir__)}/#{table}.sql"
+        sql = File.read(table_file)
+        @db.execute(sql)
+      end
+    end
+
     # Checa se todas as tabelas necessárias estão presentes no banco de dados
     def check_tables
       required_tables = Dir["#{File.expand_path('../db', __dir__)}/*.sql"].map { |table| File.basename(table).gsub('.sql', '') }
       existing_tables = @db.execute("SELECT name FROM sqlite_master WHERE type='table';").map { |row| row['name'] }
       missing_tables = required_tables - existing_tables
-      return if missing_tables.empty?
-
-      raise "Banco de dados incompleto. Faltando tabelas: <#{missing_tables.join('>, <')}>"
+      update_db(missing_tables) unless missing_tables.empty?
     end
   end
 end
