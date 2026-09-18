@@ -12,7 +12,7 @@ module Iamspe
     # Classe de geração de escalas diárias
     class Schedule
       # Regexp de validação de cada linha da tabela de escala
-      LINE_PATTERN = /(.+)\t(\d{2}:\d{2} - \d{2}:\d{2})\tDra\/Dr:\t(.+)/.freeze
+      LINE_PATTERN = %r{(.+)\t(\d{2}:\d{2} - \d{2}:\d{2})\tDra/Dr:\t(.+)}
       # Títulos de setores
       SECTORS = {
         chief: '🐝 Chefe Plantão',
@@ -28,7 +28,7 @@ module Iamspe
         ped: '🧸 Pediatria'
       }.freeze
       # Texto para divisor de seções
-      HR = '```============```'.freeze
+      HR = '```============```'
 
       # Inicializador
       def initialize
@@ -54,12 +54,10 @@ module Iamspe
         config = TTY::Config.new
         config.filename = '.iamspe'
         config.append_path Dir.home
-        if config.exist?
-          config.read
-          config
-        else
-          raise 'Arquivo de configuração não encontrado. Reinstale esta gema.'
-        end
+        raise 'Arquivo de configuração não encontrado. Reinstale esta gema.' unless config.exist?
+
+        config.read
+        config
       end
 
       # Checa se já foi aberta uma escala para hoje neste turno
@@ -89,19 +87,20 @@ module Iamspe
 
       # Inicia a interface de atribuições e salva a escala no banco de dados
       def build_schedule
-        @staff = process_raw_data(get_raw_data)
+        @staff = process_raw_data(raw_data)
         @out = ''
         # TODO: Continuar por aqui (salvar no BD, iniciar interface de atribuições)
       end
 
       # Pega os dados brutos da escala da área de transferência
-      def get_raw_data
+      def raw_data
         @raw = nil
         # Repete até que o usuário tenha copiado um texto válido
         loop do
           puts 'FOO'
-          @raw = Clipboard.paste.gsub(/\t\t\t\n/, '')
+          @raw = Clipboard.paste.gsub("\t\t\t\n", '')
           break if LINE_PATTERN.match?(@raw)
+
           @prompt.keypress('Texto na área de transferência inválido, copie o texto da tabela de Escala, sem incluir cabeçalho, e pressione qualquer tecla para tentar de novo...') unless ok
         end
         # Retornar o texto colado
@@ -117,9 +116,9 @@ module Iamspe
             # Processar nomes e horários em um _Hash_
             workers = w[3].gsub(' às ', '-').split(/(?<=[0-9])\s/i).map do |y|
               y = y.split(/\s(?=[0-9])/i)
-              y[1] = y[1].split('-').map { |i| i.gsub(/:00/, '').to_i }
+              y[1] = y[1].split('-').map { |i| i.gsub(':00', '').to_i }
               y.flatten!
-              {name: y[0], start: y[1], stop: y[2], sector: w[0]}
+              { name: y[0], start: y[1], stop: y[2], sector: w[0] }
             end
             # Usar _Hash_ para criar
             r = []
@@ -131,7 +130,7 @@ module Iamspe
             # Se apenas um plantonista na linha
             name = w[3]
             times = w[1].split(' - ').map do |t|
-              t.gsub(/:00/, '').to_i
+              t.gsub(':00', '').to_i
             end
             start = times[0]
             stop  = times[1]
@@ -178,29 +177,29 @@ module Iamspe
 
       # Definir novo horário de início de plantão
       def start=(new_start)
-        if new_start.to_i.zero?
-          @start = 7
-        else
-          @start = new_start.to_i
-        end
+        @start = if new_start.to_i.zero?
+                   7
+                 else
+                   new_start.to_i
+                 end
       end
 
       # Definir novo horário de término de plantão
       def stop=(new_stop)
-        if new_stop.to_i.zero?
-          @stop = 19
-        else
-          @stop = new_stop.to_i
-        end
+        @stop = if new_stop.to_i.zero?
+                  19
+                else
+                  new_stop.to_i
+                end
       end
 
       # Definir novo horário de almoço
       def lunch=(new_lunch)
-        if new_lunch.to_i.zero?
-          @lunch = 7
-        else
-          @lunch = new_lunch.to_i
-        end
+        @lunch = if new_lunch.to_i.zero?
+                   7
+                 else
+                   new_lunch.to_i
+                 end
       end
 
       # Definir setor
