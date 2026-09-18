@@ -7,8 +7,11 @@ O formato é baseado e os textos traduzidos de [Mantenha um Changelog](https://k
 ## [Não publicado]
 ### Adicionado
 - Opção de saída!
+- Escala.
 ### Modificado
 - Corrigidos bugs de processamento de dados no módulo de _Setores Críticos_.
+### Obsoleto
+- Mesmo módulo de Escala (kkkkkkkkkkrying).
 
 ## [1.0.0]
 ### Adicionado

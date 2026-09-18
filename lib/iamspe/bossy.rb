@@ -6,6 +6,7 @@ require 'tty-prompt'
 require_relative 'bossy/chairs'
 require_relative 'bossy/icu_cath'
 require_relative 'bossy/lunch'
+require_relative 'bossy/schedule'
 require_relative 'common'
 
 module Iamspe
@@ -21,6 +22,7 @@ module Iamspe
         @pastel = Pastel.new
         # Decidir qual módulo acionar e acioná-lo
         @out = case decide_method
+               when :schedule then Iamspe::Bossy::Schedule.new
                when :chairs then Iamspe::Bossy::Chairs.new
                when :bai then Iamspe::Common::Bai.new
                when :gone then Iamspe::Common::Gone.new
@@ -39,7 +41,7 @@ module Iamspe
       # Decidir qual método acionar com base na escolha do usuário e retornar símbolo correspondente
       def decide_method
         @prompt.select('O que iremos gerar?') do |q|
-          q.choice(name: 'Início de plantão', value: :start)
+          q.choice(name: 'Escala Diária', value: :schedule, disabled: '(deprecado)')
           q.choice(name: 'Repouso no leito', value: :chairs)
           q.choice(name: 'Setores Críticos', value: :icu_cath)
           q.choice(name: 'Alta Retroativa', value: :bai)

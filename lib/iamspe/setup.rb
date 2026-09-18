@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'active_support'
+require 'fileutils'
+require 'sqlite3'
 require 'tty-config'
 require 'tty-prompt'
 
@@ -62,6 +64,7 @@ module Iamspe
       check_register_state
       intensive_sectors
       db_name
+      init_db
     end
 
     # Submétodo de checagem de setores críticos
@@ -143,6 +146,35 @@ module Iamspe
       return unless @config.fetch(:db, default: nil).nil?
 
       @config.set(:db, value: "#{Dir.home}/.iamspe.db")
+    end
+
+    # Criar banco de dados, populá-lo com tabelas iniciais e checar integridade
+    def init_db
+      db_name = @config.fetch(:db)
+      create_db(db_name) unless File.exist?(db_name)
+      # Retorna a conexão com o banco de dados
+      @db = SQLite3::Database.open(db_name, { results_as_hash: true })
+      # Checa integridade do banco de dados
+      check_tables
+    end
+
+    # Cria arquivo de banco de dados e popula com tabelas iniciais
+    def create_db(db_name)
+      @db = SQLite3::Database.new(db_name, { results_as_hash: true })
+      Dir["#{File.expand_path('../db', __dir__)}/*.sql"].each do |file|
+        sql = File.read(file)
+        @db.execute(sql)
+      end
+    end
+
+    # Checa se todas as tabelas necessárias estão presentes no banco de dados
+    def check_tables
+      required_tables = Dir["#{File.expand_path('../db', __dir__)}/*.sql"].map { |table| File.basename(table).gsub('.sql', '') }
+      existing_tables = @db.execute("SELECT name FROM sqlite_master WHERE type='table';").map { |row| row['name'] }
+      missing_tables = required_tables - existing_tables
+      return if missing_tables.empty?
+
+      raise "Banco de dados incompleto. Faltando tabelas: <#{missing_tables.join('>, <')}>"
     end
   end
 end
