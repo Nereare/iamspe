@@ -102,7 +102,33 @@ module Iamspe
         else
           patients_from_db res[0]
         end
+        puts summary
         to_s
+      end
+
+      # Construir um resumo simplificado para exibição
+      def summary
+        s = [
+          "#{@pastel.red.bold('Setor')} / Pctes / UTIs / CATEs / #{@pastel.green('Altas')}"
+        ]
+        # DT
+        s.push "#{@pastel.blue.bold('DT')}    / #{@patients[:dt].to_s.rjust(2)} / -- / -- / --"
+        # Semi
+        s.push "#{@pastel.blue.bold('Semi')}  / #{@patients[:semi][:count].to_s.rjust(2)} / #{@patients[:semi][:icu].to_s.rjust(2)} / #{@patients[:semi][:cath].to_s.rjust(2)} / #{@patients[:semi][:out].to_s.rjust(2)}"
+        # UCP
+        s.push "#{@pastel.blue.bold('UCP')}   / #{@patients[:ucp][:count].to_s.rjust(2)} / #{@patients[:ucp][:icu].to_s.rjust(2)} / #{@patients[:ucp][:cath].to_s.rjust(2)} / #{@patients[:semi][:out].to_s.rjust(2)}"
+        # EME
+        free = @eme_beds - @patients[:eme][:count]
+        if free < 0
+          free = @pastel.red(free.to_s.rjust(2))
+        elsif free > 2
+          free = @pastel.green(free.to_s.rjust(2))
+        else
+          free = @pastel.yellow(free.to_s.rjust(2))
+        end
+        s.push "#{@pastel.blue.bold('EME')}   / #{free} / #{@patients[:eme][:icu].to_s.rjust(2)} / #{@patients[:eme][:cath].to_s.rjust(2)} / --"
+
+        s.join "\n"
       end
 
       # Usar dados do BD para popular variáveis de instância
@@ -260,13 +286,9 @@ module Iamspe
         # EME
         out.push "\x2aEME:\x2a"
         out.push "- \x60#{@patients[:eme][:count]}\x60 paciente#{'s' if @patients[:eme][:count] > 1}"
-        free = @eme_beds.to_i - @patients[:eme][:count].to_i
-        if free.negative?
-          out.push "- \x60#{free + @eme_ext}\x60 leito#{'s' unless (free + @eme_ext) == 1} \x2ada Contingência\x2a não utilizado#{'s' unless (free + @eme_ext) == 1}"
-        else
-          out.push "- \x60#{free}\x60 leito#{'s' unless free == 1} vago#{'s' unless free == 1}"
-          out.push '- Contingência vazia'
-        end
+        free = @eme_beds - @patients[:eme][:count]
+        out.push "- \x60#{free}\x60 leito#{'s' unless free == 1} vago#{'s' unless free == 1}"
+        out.push '- Contingência vazia' unless free.negative?
         out.push "- \x60#{@patients[:eme][:icu]} UTI#{'s' unless @patients[:eme][:icu] == 1}"
 
         # Retornar valor concatenado
