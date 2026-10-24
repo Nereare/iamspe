@@ -9,7 +9,8 @@ O formato é baseado e os textos traduzidos de [Mantenha um Changelog](https://k
 - Opção de saída!
 - Escala.
 ### Modificado
-- Corrigidos bugs de processamento de dados no módulo de _Setores Críticos_.
+- Refatoramento completo dos módulos:
+  - _Setores Críticos_.
 ### Obsoleto
 - Mesmo módulo de Escala (kkkkkkkkkkrying).
 

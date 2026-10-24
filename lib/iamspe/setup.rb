@@ -2,6 +2,7 @@
 
 require 'active_support'
 require 'fileutils'
+require 'pastel'
 require 'sqlite3'
 require 'tty-config'
 require 'tty-prompt'
@@ -49,6 +50,8 @@ module Iamspe
       @config.filename = '.iamspe'
       @config.append_path Dir.home
       @config.read if @config.exist?
+      # Inicializar Pastel
+      @pastel = Pastel.new
       # Checar completude da configuração
       check_fullness
       # Compilar configuração
@@ -72,12 +75,15 @@ module Iamspe
       check_eme_beds
       check_eme_beds_ext
       check_dt_beds
+      check_semi_beds
+      check_ucp_beds
     end
 
     # Checar nome completo
     def check_name
       return unless @config.fetch(:nome, default: nil).nil?
 
+      puts @pastel.green.bold('<Configuração pendente>')
       name = @prompt.ask('Qual seu nome completo?') do |q|
         q.required true
         q.modify   :capitalize, :strip
@@ -89,6 +95,7 @@ module Iamspe
     def check_register_number
       return unless @config.fetch(:crm, :numero, default: nil).nil?
 
+      puts @pastel.green.bold('<Configuração pendente>')
       crm = @prompt.ask('Qual o número do seu CRM?') do |q|
         q.required true
         q.convert  :int
@@ -101,6 +108,7 @@ module Iamspe
     def check_register_state
       return unless @config.fetch(:crm, :uf, default: nil).nil?
 
+      puts @pastel.green.bold('<Configuração pendente>')
       crm = @prompt.select('Qual a Unidade Federativa do seu CRM?') do |q|
         q.choices ESTADOS
         q.default 'São Paulo'
@@ -112,6 +120,7 @@ module Iamspe
     def check_eme_beds
       return unless @config.fetch(:eme, :leitos, default: nil).nil?
 
+      puts @pastel.green.bold('<Configuração pendente>')
       eme = @prompt.ask('Qual o número do leitos HABITUAL na EME?') do |q|
         q.required true
         q.convert  :int
@@ -123,6 +132,7 @@ module Iamspe
     def check_eme_beds_ext
       return unless @config.fetch(:eme, :contingencia, default: nil).nil?
 
+      puts @pastel.green.bold('<Configuração pendente>')
       eme = @prompt.ask('Qual o número do leitos COM CONTINGÊNCIA na EME?') do |q|
         q.required true
         q.convert  :int
@@ -134,11 +144,36 @@ module Iamspe
     def check_dt_beds
       return unless @config.fetch(:dt, :leitos, default: nil).nil?
 
+      puts @pastel.green.bold('<Configuração pendente>')
       dt = @prompt.ask('Qual o número do leitos na DT?') do |q|
         q.required true
         q.convert  :int
       end
       @config.set(:dt, :leitos, value: dt)
+    end
+
+    # Checar número de leitos na Semi
+    def check_semi_beds
+      return unless @config.fetch(:semi, :leitos, default: nil).nil?
+
+      puts @pastel.green.bold('<Configuração pendente>')
+      semi = @prompt.ask('Qual o número do leitos na Semi?') do |q|
+        q.required true
+        q.convert  :int
+      end
+      @config.set(:semi, :leitos, value: semi)
+    end
+
+    # Checar número de leitos na UCP
+    def check_ucp_beds
+      return unless @config.fetch(:ucp, :leitos, default: nil).nil?
+
+      puts @pastel.green.bold('<Configuração pendente>')
+      ucp = @prompt.ask('Qual o número do leitos na UCP') do |q|
+        q.required true
+        q.convert  :int
+      end
+      @config.set(:ucp, :leitos, value: ucp)
     end
 
     # Checar nome e local do arquivo de banco de dados
