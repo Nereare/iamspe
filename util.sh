@@ -4,7 +4,7 @@ clear
 rm -vf iamspe*.gem
 yes | gem uninstall iamspe
 
-bundle
+bundle install
 
 gem build *.gemspec
 gem install iamspe-*.gem
